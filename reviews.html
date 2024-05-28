@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Выводим заголовок -->
+<title>Pikadu — главная</title>
+<!-- Подключаем normalize -->
+<link rel="stylesheet" href="css/normalize.css">
+<!-- Подключаем стили -->
+<link rel="stylesheet" href="css/style.css">
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
+
+
+<script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-app.js";
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+</script>
+<script src="js/main.js" defer></script>
+</head>
+<body>
+    <header class="header">
+        <div class="header-wrapper">
+        <a href="/" class="header-logo">
+            <img class="header-logo-image logo-png" src="img/logo.png" alt="logo: Pikadu">
+        </a>
+        <nav class="header-nav">
+            <ul class="header-menu">
+            <li class="header-menu-item"><a href="index.html" class="header-menu-link">Главная</a></li>
+            <li class="header-menu-item"><a href="#" class="header-menu-link">Свежее</a></li>
+            <li class="header-menu-item"><a href="#" class="header-menu-link">Лучшее</a></li>
+            <li class="header-menu-item"><a href="#" class="header-menu-link">Горячее</a></li>
+            <li class="header-menu-item"><a href="#" class="header-menu-link">Подписки</a></li>
+            <li class="header-menu-item"><a href="#" class="header-menu-link underline">Отзывы</a></li>
+            <li class="header-menu-item"><a href="myPage.html" class="header-menu-link">Редактировать профиль</a></li>
+            </ul>
+            
+        </nav>
+        <!-- /.header-nav -->
+        <div class="input-group search">
+            <input type="search" class="search-input" placeholder="Поиск по сайту">
+            <button class="search-button">
+            <img src="img/search.png" alt="icon: search" class="search-icon">
+            </button>
+        </div>
+        <!-- /.input-group -->
+        <a href="#" class="menu-toggle" id="menu-toggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </a>
+        </div>
+        <!-- /.header-wrapper -->
+    </header>
+<div class="fl jc-c ta-c p50">
+    <div id="disqus_thread" class="w400"></div>
+    <script>
+        /**
+        *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+        *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+        /*
+        var disqus_config = function () {
+        this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+        };
+        */
+        (function() { // DON'T EDIT BELOW THIS LINE
+        var d = document, s = d.createElement('script');
+        s.src = 'https://https-pivendaniil-github-io-pikadu.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+        })();
+    </script>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Выводим заголовок -->
+<title>Pikadu — главная</title>
+<!-- Подключаем normalize -->
+<link rel="stylesheet" href="css/normalize.css">
+<!-- Подключаем стили -->
+<link rel="stylesheet" href="css/style.css">
+<script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-app.js";
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+</script>
+<script src="js/main.js" defer></script>
+</head>
+<body>
+
+    <div class="login register">
+        <form  class="login-form ">
+        <h2 class="login-title">Авторизация</h2>
+
+        <input type="email" class="login-input login-email" 
+        name="email" 
+        minlength="3" 
+        required
+        placeholder="Введите email">
+
+        <input type="password" class="login-input login-password" 
+        name="password" 
+        minlength="8" 
+        required
+        placeholder="Введите пароль">
+
+        <a href="#" class="login-forget">Забыли пароль?</a>
+
+        <button type="submit" class="login-signin">Войти</button>
+
+        <a href="#" class="login-signup">Регистрация</a>
+
+        </form>
+        </div>
+</body>
+</html>

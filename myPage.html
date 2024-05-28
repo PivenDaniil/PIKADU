@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Выводим заголовок -->
+<title>Pikadu — главная</title>
+<!-- Подключаем normalize -->
+<link rel="stylesheet" href="css/normalize.css">
+<!-- Подключаем стили -->
+<link rel="stylesheet" href="css/style.css">
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
+<script src="js/main.js" defer></script>
+</head>
+<body>
+    <header class="header source-code-pro">
+        <div class="header-wrapper">
+        <a href="/" class="header-logo">
+            <img class="header-logo-image logo-png" src="img/logo.png" alt="logo: Pikadu">
+        </a>
+        <nav class="header-nav">
+            <ul class="header-menu">
+            <li class="header-menu-item"><a href="index.html" class="header-menu-link">Главная</a></li>
+            <li class="header-menu-item"><a href="#" class="header-menu-link">Свежее</a></li>
+            <li class="header-menu-item"><a href="#" class="header-menu-link">Лучшее</a></li>
+            <li class="header-menu-item"><a href="#" class="header-menu-link">Горячее</a></li>
+            <li class="header-menu-item"><a href="#" class="header-menu-link">Подписки</a></li>
+            <li class="header-menu-item"><a href="reviews.html" class="header-menu-link">Отзывы</a></li>
+            <li class="header-menu-item"><a href="#" class="header-menu-link underline">Редактировать профиль</a></li>
+            </ul>
+            
+        </nav>
+        <!-- /.header-nav -->
+        <div class="input-group search source-code-pro">
+            <input type="search" class="search-input" placeholder="Поиск по сайту">
+            <button class="search-button">
+            <img src="img/search.png" alt="icon: search" class="search-icon">
+            </button>
+        </div>
+        <!-- /.input-group -->
+        <a href="#" class="menu-toggle" id="menu-toggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </a>
+        </div>
+        <!-- /.header-wrapper -->
+    </header>
+
+    <div class="fl bg jc-sa plr-100 box-shadow source-code-pro">
+        <div class="block-avatar fl fd-col jc-c ta-c ">
+            <div class="">
+                <img src="/img/avatar.png" alt="avatarMyPage" class="avatarMyPage">
+            </div>
+            <div class="photo2 fl jc-c">
+                <div class="photo">
+                    <input type="file" id="upload-file" hidden="hidden">
+                    <button id="upload-btn"><label for="upload-file">Загрузить файл</label></button>
+                    <span id="upload-text">Файл не выбран</span> 
+                </div>
+            </div>
+            <div class="p50">
+                <button class="btn-delete">Удалить</button>
+            </div>
+        </div>
+        <div class="p50">
+            <div class="fl fd-col">
+                <label for="sername" class="label-form ">Фамилия:</label>
+                <input type="text" id="sername" name="sername" class="input-form" required placeholder="Иванов">
+            </div>
+            <div class="fl fd-col p50">
+                <label for="nameuser" class="label-form">Имя:</label>
+                <input type="text" id="nameuser" name="nameuser" class="input-form" required placeholder="Иван">
+            </div>
+            <div class="fl fd-col p50">
+                <label for="patronymic" class="label-form">Отчество:</label>
+                <input type="text" id="patronymic" name="patronymic" class="input-form" required placeholder="Иванович">
+            </div>
+        </div>
+        <div class="p50">
+            <div class="fl fd-col">
+                <label for="phone" class="label-form" >Номер телефона:</label>
+                <input type="tel" id="phone" name="phone" class="input-form tel" required value="" placeholder="+7 (900)-121-12-12" >
+            </div>
+            <div class="fl fd-col p50">
+                <label for="birthdate" class="label-form">Дата рождения:</label>
+                <input type="date" id="birthdate" name="birthdate" class="input-form" >
+            </div>
+        </div>
+    </div>
+        <div class="save-block fl jc-c">
+            <a href="" class="btnsave">Сохранить изменения</a>
+        </div>
+</body>
+</html>
