@@ -29,19 +29,33 @@ const exitElem = document.querySelector('.exit');
 
 const editElem = document.querySelector('.edit');
 const editContainer = document.querySelector('.edit-container');
-
-
 const editUsername = document.querySelector('.edit-username');
 const editPhotoURL = document.querySelector('.edit-photo');
-
 const userAvatarElem = document.querySelector('.user-avatar');
-
-
 const postsWrapper = document.querySelector('.posts');
-
 const buttonNewPost = document.querySelector('.button-new-post');
 const addPostElem = document.querySelector('.add-post');
-
+// Variables
+const likeBtn = document.querySelector('.heart-icon');
+const numberOfLikesElement = document.querySelector('.number-of-likes');
+let numberOfLikes = Number.parseInt(numberOfLikesElement.textContent, 10);
+let isLiked = false;
+// Functions
+const likeClick = () => {
+  if (!isLiked) {
+    likeBtn.classList.add('isLiked');
+    numberOfLikes++;
+    numberOfLikesElement.textContent = numberOfLikes;
+    isLiked = !isLiked;
+  } else {
+    likeBtn.classList.remove('isLiked');
+    numberOfLikes--;
+    numberOfLikesElement.textContent = numberOfLikes;
+    isLiked = !isLiked;
+  }
+};
+// Event Listeners
+likeBtn.addEventListener('click', likeClick);
 const listUsers = [
 {
   id:'01',
@@ -58,7 +72,6 @@ const listUsers = [
   photo:'https://cs6.pikabu.ru/post_img/big/2014/08/27/1/1409091619_1970050481.jpg',
   },
 ];
-
 const setUsers ={
   user: null,
   logIn(email,password, handler) {
@@ -73,7 +86,6 @@ const setUsers ={
     } else {
       alert('Пользователь с такими данными не найден')
     }
-
   },
   logOut(handler) {
     console.log('Выход')
@@ -81,17 +93,14 @@ const setUsers ={
     handler();
   },
   signUp( email,password, handler) {
-
     if(!regExpValidEmail.test(email)) {
       alert('Email не валиден');
       return;
     }
-
     if (!email.trim() || !password.trim()){
       alert ('Введите данные')
       return;
     }
-
     if(!this.getUser(email)){
     const user ={email,password, displayName:email.substring(0, email.indexOf('@'))};
     listUsers.push({user})
@@ -101,7 +110,6 @@ const setUsers ={
       alert('Пользователь с таким email уже зарегестрирован')
     }
   },
-
   editUser(userName,userPhoto, handler){
   if(userName){
     this.user.displayName = userName;
@@ -109,11 +117,8 @@ const setUsers ={
   if(userPhoto){
     this.user.photo = userPhoto;
   }
-
   handler();
   },
-
-
   getUser(email){
   return listUsers.find(item => item.email === email)
   },
@@ -121,7 +126,6 @@ const setUsers ={
     this.user = user;
   }
 };
-
   const setPosts = {
     allPosts: [
       {
@@ -170,15 +174,9 @@ const setUsers ={
       }
     }
   };
-
-
-
-
-
 const toggleAuthDom = () => {
 const user = setUsers.user;
 console.log('user', user);
-
 if(user){
   loginElem.style.display = 'none';
   userElem.style.display = '';
@@ -193,22 +191,15 @@ if(user){
   postsWrapper.classList.add('visible');
 }
 }; 
-
 const showAddPost = () => {
   addPostElem.classList.add('visible');
   postsWrapper.classList.remove('visible');
 }
-
 const showAllPosts = () =>{
-  
   addPostElem.classList.remove('visible');
   postsWrapper.classList.add('visible');
-
   let postsHTML = '';
   setPosts.allPosts.forEach(({title,text,date,tags,like, commetns,author})=> {
-
-
-
     postsHTML += `
     <section class="post">
     <div class="post-body">
@@ -216,7 +207,6 @@ const showAllPosts = () =>{
       <p class="post-text">${text}</p>
       <div class="tags">
       ${tags.map(tag => `<a href="#" class="tag">#${tag}</a>`)}
-      
       </div>
     </div>
     <div class="post-footer">
@@ -255,93 +245,116 @@ const showAllPosts = () =>{
   </section>
     `;
   })
-
   postsWrapper.innerHTML = postsHTML
 };
-
-
-
-
 const init = () => {
-
   loginForm.addEventListener('submit',event=>{
     event.preventDefault();
-  
     const emailValue = emailInput.value;
     const passwordValue = passwordInput.value;
-  
     setUsers.logIn(emailValue, passwordValue, toggleAuthDom);
     loginForm.reset ();
   });
-  
   loginSignup.addEventListener('click', event=>{
     event.preventDefault();
-  
     const emailValue = emailInput.value;
     const passwordValue = passwordInput.value;
-  
     setUsers.signUp(emailValue, passwordValue, toggleAuthDom);
     loginForm.reset ();
   });
-  
   exitElem.addEventListener('click',event => {
     event.preventDefault();
     setUsers.logOut(toggleAuthDom);
-  
   });
-  
-  
   editElem.addEventListener('click', event =>{
     event.preventDefault();
     editContainer.classList.toggle('visible');
     editUsername.value = setUsers.user.displayName;
   });
-  
-  
   editContainer.addEventListener('submit', event =>{
     event.preventDefault();
     setUsers.editUser(editUsername.value, editPhotoURL.value, toggleAuthDom)
     editContainer.classList.remove('visible');
   });
-
   menuToggle.addEventListener('click', function (event) {
     // отменяем стандартное поведение ссылки
     event.preventDefault();
     // вешаем класс на меню, когда кликнули по кнопке меню 
     menu.classList.toggle('visible');
   })
-
-
   buttonNewPost.addEventListener('click', event => {
     event.preventDefault();
     showAddPost();
   });
-
   addPostElem.addEventListener('submit', event => {
     event.preventDefault();
     const { title, text, tags } = addPostElem.elements; 
-
     if (title.value.length < 6){
       alert ('Слишком короткий заголовок');
       return;
     }
-
     if (text.value.length < 50){
       alert ('Слишком короткий пост');
       return;
     }
-
     setPosts.addPost(title.value, text.value, tags.value, showAllPosts);
     addPostElem.classList.remove('visible');
     addPostElem.reset();
   });
-
-
   showAllPosts();
   toggleAuthDom();
 }
-
 document.addEventListener('DOMContentLoaded', init)
-
+window.addEventListener("DOMContentLoaded", function() {
+  [].forEach.call( document.querySelectorAll('.tel'), function(input) {
+    var keyCode;
+    function mask(event) {
+      event.keyCode && (keyCode = event.keyCode);
+      var pos = this.selectionStart;
+      if (pos < 3) event.preventDefault();
+      var matrix = "+7 (___) ___ ____",
+          i = 0,
+          def = matrix.replace(/\D/g, ""),
+          val = this.value.replace(/\D/g, ""),
+          new_value = matrix.replace(/[_\d]/g, function(a) {
+              return i < val.length ? val.charAt(i++) : a
+          });
+      i = new_value.indexOf("_");
+      if (i != -1) {
+          i < 5 && (i = 3);
+          new_value = new_value.slice(0, i)
+      }
+      var reg = matrix.substr(0, this.value.length).replace(/_+/g,
+          function(a) {
+              return "\\d{1," + a.length + "}"
+          }).replace(/[+()]/g, "\\$&");
+      reg = new RegExp("^" + reg + "$");
+      if (!reg.test(this.value) || this.value.length < 5 || keyCode > 47 && keyCode < 58) {
+        this.value = new_value;
+      }
+      if (event.type == "blur" && this.value.length < 5) {
+        this.value = "";
+      }
+    }
+    input.addEventListener("input", mask, false);
+    input.addEventListener("focus", mask, false);
+    input.addEventListener("blur", mask, false);
+    input.addEventListener("keydown", mask, false);
+  });
+});
+const btn = document.querySelector('.btn');
+const btn2 = document.querySelector('.btn2');
+const h1element = document.querySelector('.hel');
+btn.addEventListener('click',clickplus);
+btn2.addEventListener('click',clickminus);
+let count = 0;
+function clickplus(){
+  count ++
+  h1element.innerHTML = `${count}`
+}
+function clickminus(){
+  count --
+  h1element.innerHTML = `${count}`
+}
 
 
